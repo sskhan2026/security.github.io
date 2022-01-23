@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/style1.css" />
+    <title>Sign in & Sign up Form</title>
+</head>
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="#" class="sign-in-form">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="email" placeholder="Email" id="email" required/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" id="psw" required/>
+          </div>
+          <button type="button" onclick="saveData1()" style="width: 150px;
+          background-color: #5995fd;
+          border: none;
+          outline: none;
+          height: 49px;
+          border-radius: 49px;
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin: 10px 0;
+          cursor: pointer;
+          transition: 0.5s;">
+            Login
+          </button>
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+        <form action="signup" method="POST" class="sign-up-form">
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" placeholder="Username" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="psw" placeholder="Password" />
+          </div>
+          <button type="button" onclick="saveData()" style="width: 150px;
+          background-color: #5995fd;
+          border: none;
+          outline: none;
+          height: 49px;
+          border-radius: 49px;
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin: 10px 0;
+          cursor: pointer;
+          transition: 0.5s;" id="save_btn" >
+         <a href="login.html">Sign Up</a>
+          </button>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New here ?</h3>
+          <p>
+            Please Register youself to go inside
+          </p>
+          <button class="btn transparent" id="sign-up-btn">
+           Sign up
+          </button>
+        </div>
+        <img src="img1/log.svg" class="image" alt="" />
+      </div>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us ?</h3>
+          <p>
+           login to your account
+          </p>
+          <button  style="width: 150px;
+          background-color: #5995fd;
+          border: none;
+          outline: none;
+          height: 49px;
+          border-radius: 49px;
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin: 10px 0;
+          cursor: pointer;
+          transition: 0.5s;">
+           <a href="login.html">Sign In</a>
+           </button>
+        </div>
+        <img src="img1/register.svg" class="image" alt="" />
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+<script>
+  function saveData1()
+  {
+  let email,psw;
+  
+  email=document.getElementById("email").value;
+  psw=document.getElementById("psw").value;
+  
+let user_records = new Array ();
+user_records = JSON.parse (localStorage.getItem("users"))?JSON.parse (localStorage.getItem("users")):[]
+
+if(user_records.some((v)=> {return v.email==email && v.psw==psw}))
+{
+  alert("login pass");
+  let current_user =  user_records.filter((v)=> {return v.email==email && v.psw==psw})[0]
+localStorage.setItem('name',current_user.name);
+localStorage.setItem('email',current_user.email);
+  window.location.href="home.html"
+}
+else{
+alert ('login fail')
+}
+
+
+ 
+
+
+}
+</script>
+
+<script>
+  function saveData()
+  {
+  let name,email,psw;
+  name=document.getElementById("name").value;
+  email=document.getElementById("email").value;
+  psw=document.getElementById("psw").value;
+  
+let user_records = new Array ();
+user_records = JSON.parse (localStorage.getItem("users"))?JSON.parse (localStorage.getItem("users")):[]
+
+if(user_records.some((v)=> {return v.email==email}))
+{
+  alert("dublicate data");
+}
+else{
+  user_records.push({
+  "name":name,
+  "email":email,
+  "psw":psw
+})
+
+
+
+  localStorage.setItem("users",JSON.stringify(user_records));
+}
+
+
+ 
+
+
+}
+
+let name = localStorage.getItem('name')?localStorage.getItem('name'):''
+console.log(name);
+if(name!='')
+{
+	alert('you already login please visit profile');
+	window.location.href="home.html";
+}
+</script>
+
+</html>
